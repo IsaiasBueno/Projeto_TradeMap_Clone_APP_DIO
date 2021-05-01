@@ -11,8 +11,10 @@ import com.isaiasbueno.projeto_trademap_clone_app_dio.domain.UsuarioLogado
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 class LoginViewModel(private val apiService: ApiService) : ViewModel() {
+
     private val _usuario = MutableLiveData<Usuario>()
     val usuario: LiveData<Usuario> = _usuario
+
     fun login(login: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {

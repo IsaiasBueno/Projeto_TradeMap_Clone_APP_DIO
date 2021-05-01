@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import org.koin.android.ext.android.inject
 class MainActivity : AppCompatActivity() {
+
     private val mainViewModel: MainViewModel by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setupNavController()
         mainViewModel.consumirAcoes()
     }
+
     private fun setupNavController() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
@@ -43,17 +46,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     fun esconderActionBar() {
         supportActionBar?.hide()
     }
+
     fun mostrarActionBar() {
         supportActionBar?.show()
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return NavHostFragment.findNavController(nav_host_fragment).navigateUp()
     }
+
     override fun onDestroy() {
         super.onDestroy()
         mainViewModel.pararCosumirAcoes()
     }
+
 }

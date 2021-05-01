@@ -1,12 +1,12 @@
 package com.isaiasbueno.projeto_trademap_clone_app_dio
 
-import br.com.dio.trademapclone.domain.ApiService
+import com.isaiasbueno.projeto_trademap_clone_app_dio.domain.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-private const val URL = "http://192.168.1.11:8080"
+private const val URL = "http://192.168.1.1:8080"
 object RetrofitService {
     private fun criarHttpClient(): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()

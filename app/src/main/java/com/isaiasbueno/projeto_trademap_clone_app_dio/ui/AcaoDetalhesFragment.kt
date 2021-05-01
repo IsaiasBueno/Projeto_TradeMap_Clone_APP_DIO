@@ -15,8 +15,11 @@ import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_acao_detalhe.*
 import org.koin.android.viewmodel.ext.android.viewModel
 class AcaoDetalhesFragment : Fragment(R.layout.fragment_acao_detalhe) {
+
     private val viewModel: AcaoViewModel by viewModel()
+
     private val arguments by navArgs<AcaoDetalhesFragmentArgs>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val acao = arguments.acao
@@ -26,6 +29,7 @@ class AcaoDetalhesFragment : Fragment(R.layout.fragment_acao_detalhe) {
         })
         observaAcoes(acao)
     }
+
     private fun observaAcoes(acao: Acao) {
         viewModel.getTodos(acao.codigo).observe(viewLifecycleOwner, { acoes ->
             val pontos = mutableListOf<Entry>()
@@ -35,6 +39,7 @@ class AcaoDetalhesFragment : Fragment(R.layout.fragment_acao_detalhe) {
             criarGrafico(pontos)
         })
     }
+
     fun criarGrafico(pontos: MutableList<Entry>) {
         val lineDataSet = LineDataSet(pontos, "Ações").apply {
             lineWidth = 1.8f
@@ -64,4 +69,5 @@ class AcaoDetalhesFragment : Fragment(R.layout.fragment_acao_detalhe) {
             data = LineData(lineDataSet)
         }
     }
+
 }

@@ -9,8 +9,11 @@ import com.isaiasbueno.projeto_trademap_clone_app_dio.repository.AcaoRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 class AcaoViewModel(private val acaoRepository: AcaoRepository) : ViewModel() {
+
     val acaoAdicionada = MutableLiveData<Acao>()
+
     fun getUltimo(codigo: String? = null) = acaoRepository.getUltimo(codigo)
+
     fun getTodos(codigo: String): MutableLiveData<List<Acao>> {
         val acoesLiveData = MutableLiveData<List<Acao>>()
         viewModelScope.launch(Dispatchers.IO) {
@@ -19,6 +22,7 @@ class AcaoViewModel(private val acaoRepository: AcaoRepository) : ViewModel() {
         }
         return acoesLiveData
     }
+
     fun adicionarAcao(codigo: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
@@ -29,4 +33,5 @@ class AcaoViewModel(private val acaoRepository: AcaoRepository) : ViewModel() {
             }
         }
     }
+
 }

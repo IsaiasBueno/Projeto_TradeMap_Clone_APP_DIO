@@ -15,15 +15,19 @@ class AcaoAdapter(
     private val acoes: MutableList<Acao> = mutableListOf(),
     private val onClick: (Acao) -> Unit
 ) : RecyclerView.Adapter<AcaoAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_acao, parent, false)
         return ViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val acao = acoes[position]
         holder.bind(acao)
     }
+
     override fun getItemCount(): Int = acoes.size
+
     fun adicionar(acao: Acao) {
         val contemAcao = acoes.any { it.codigo == acao.codigo }
         if (!contemAcao) {
@@ -31,6 +35,7 @@ class AcaoAdapter(
             notifyDataSetChanged()
         }
     }
+
     fun atualizar(acao: Acao?) {
         if (acao == null) return
         acoes.find { it.codigo == acao.codigo }?.let {
@@ -44,6 +49,7 @@ class AcaoAdapter(
             notifyDataSetChanged()
         }
     }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(acao: Acao) {
             with(itemView) {
@@ -69,6 +75,7 @@ class AcaoAdapter(
                 setOnClickListener { onClick(acao) }
             }
         }
+
         fun animacaoBackground(itemView: View, color: Int) {
             with(itemView) {
                 constraintLayout.setBackgroundColor(ContextCompat.getColor(context, color))
@@ -83,4 +90,5 @@ class AcaoAdapter(
             }
         }
     }
+
 }

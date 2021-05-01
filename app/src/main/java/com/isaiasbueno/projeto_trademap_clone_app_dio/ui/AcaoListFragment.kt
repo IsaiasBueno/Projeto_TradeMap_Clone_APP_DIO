@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.dialog_acao.view.*
 import kotlinx.android.synthetic.main.fragment_acao_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 class AcaoListFragment : Fragment(R.layout.fragment_acao_list) {
+
     private val viewModel: AcaoViewModel by viewModel()
     private val adapter: AcaoAdapter by lazy {
         AcaoAdapter(UsuarioLogado.usuario.acoesFavoritas.toMutableList()) {
@@ -20,6 +21,7 @@ class AcaoListFragment : Fragment(R.layout.fragment_acao_list) {
             findNavController().navigate(direcao)
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configuraRecyclerView()
@@ -27,11 +29,13 @@ class AcaoListFragment : Fragment(R.layout.fragment_acao_list) {
         configuraBotaoAdicionarAcao()
         observaAcaoAdicionada()
     }
+
     private fun observaAcaoAdicionada() {
         viewModel.acaoAdicionada.observe(viewLifecycleOwner, {
             adapter.adicionar(it)
         })
     }
+
     private fun configuraBotaoAdicionarAcao() {
         floatingActionButton.setOnClickListener {
             val dialogView: View = LayoutInflater.from(context)
@@ -48,12 +52,15 @@ class AcaoListFragment : Fragment(R.layout.fragment_acao_list) {
             }
         }
     }
+
     private fun observaUltimaAcao() {
         viewModel.getUltimo().observe(viewLifecycleOwner, {
             adapter.atualizar(it)
         })
     }
+
     private fun configuraRecyclerView() {
         recyclerView.adapter = adapter
     }
+
 }

@@ -1,13 +1,14 @@
 package com.isaiasbueno.projeto_trademap_clone_app_dio
 
 import android.app.Application
-import br.com.dio.trademapclone.di.daoModule
-import br.com.dio.trademapclone.di.repositoryModule
-import br.com.dio.trademapclone.di.serviceModule
-import br.com.dio.trademapclone.di.viewModelModule
+import com.isaiasbueno.projeto_trademap_clone_app_dio.di.daoModule
+import com.isaiasbueno.projeto_trademap_clone_app_dio.di.repositoryModule
+import com.isaiasbueno.projeto_trademap_clone_app_dio.di.serviceModule
+import com.isaiasbueno.projeto_trademap_clone_app_dio.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 class AppApplication : Application() {
+
     override fun onCreate() {
         super.onCreate()
         startKoin {
